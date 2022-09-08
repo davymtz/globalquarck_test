@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::redirect("/","/quiz");
 // Encuestas
 Route::group(['prefix' => "/quiz"], function () {
     Route::get("/", [QuizController::class,'index'])->name("quiz.index");

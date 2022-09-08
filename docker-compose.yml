@@ -10,8 +10,8 @@ services:
     environment:
       MYSQL_DATABASE: "encuestas"
       MYSQL_USER: "globalquarck"
-      MYSQL_PASSWORD: "hola123abc"
-      MYSQL_ROOT_PASSWORD: "hola123abc"
+      MYSQL_PASSWORD: "hola123.,"
+      MYSQL_ROOT_PASSWORD: "hola123.,"
     ports:
       - "3306:3306"
     restart: always
@@ -47,7 +47,7 @@ services:
       # - "443:443"
     volumes:
       - ./backend/:/var/www/html/
-      - ./test.conf:/etc/nginx/conf.d/test.conf
+      - ./default.conf:/etc/nginx/conf.d/default.conf
     networks:
       - globalquarck
 

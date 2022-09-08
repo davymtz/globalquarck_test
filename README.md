@@ -31,3 +31,11 @@ docker exec fpm_service bash -c "cd globalquarck && php artisan migrate"
 ```
 
 Si no ocurre ningún error, entrar con el navegador preferido a [localhost](http://localhost)
+
+Una vez acabado con el proyecto, eliminar los contenedores con el siguiente comando:
+```bash
+docker compose down
+```
+
+## Nota: En dado caso que no quiera hacer todo el proceso con docker, solamente extreaer el proyecto que se encuentra en
+## backend/globalquarck y hacer sus propias configuraciones para su entorno y tener instalado composer para los paquetes necesarios.

@@ -1,0 +1,59 @@
+version: "3.9"
+
+services:
+  #MySQL Service
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_service
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      MYSQL_DATABASE: "encuestas"
+      MYSQL_USER: "globalquarck"
+      MYSQL_PASSWORD: "hola123abc"
+      MYSQL_ROOT_PASSWORD: "hola123abc"
+    ports:
+      - "3306:3306"
+    restart: always
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      - globalquarck
+
+  #PHP-FPM Service (Fast CGI)
+  fpm:
+    build:
+      context: .
+      dockerfile: ./back.Dockerfile
+    depends_on:
+      - mysql
+    container_name: fpm_service
+    image: php-fpm:v0.1
+    tty: true
+    volumes:
+      - ./backend/:/var/www/html/
+    networks:
+      - globalquarck
+
+  #Nginx service
+  webserver:
+    image: nginx
+    tty: true
+    container_name: ws_service
+    depends_on:
+      - fpm
+    ports:
+      - "80:80"
+      # - "443:443"
+    volumes:
+      - ./backend/:/var/www/html/
+      - ./test.conf:/etc/nginx/conf.d/test.conf
+    networks:
+      - globalquarck
+
+networks:
+  globalquarck:
+    driver: bridge
+
+volumes:
+  mysql: {}

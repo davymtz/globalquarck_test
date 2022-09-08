@@ -9,9 +9,9 @@ services:
       - seccomp:unconfined
     environment:
       MYSQL_DATABASE: "encuestas"
-      MYSQL_USER: "globalquarck"
-      MYSQL_PASSWORD: "hola123.,"
-      MYSQL_ROOT_PASSWORD: "hola123.,"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "hola123abc"
+      MYSQL_ROOT_PASSWORD: "hola123abc"
     ports:
       - "3306:3306"
     restart: always
